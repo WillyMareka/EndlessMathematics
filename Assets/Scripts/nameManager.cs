@@ -6,7 +6,7 @@ using System.Linq;
 public class nameManager : MonoBehaviour {
 
 	public InputField nameInput;
-	public Text playerName;
+	//public Text playerName;
 	public Dropdown dropDown;
 
 	private GameObject imgname;
@@ -20,6 +20,7 @@ public class nameManager : MonoBehaviour {
 
 
 	void Start(){
+		
 		imgname = GameObject.Find ("newplayerpanel");
 		GS = GetComponent<gameSelected> ();
 		firstTimeName = PlayerPrefs.GetString("FirstPlayer");
@@ -58,24 +59,24 @@ public class nameManager : MonoBehaviour {
 		}
 		dropDown.AddOptions(activenames);
 
-		string cname = GS.getCurrentPlayer ();
+		//string cname = GS.getCurrentPlayer ();
 
-		if (cname == "" || cname == null) {
-			playerName.text = "Choose Name";
-		} else {
-			playerName.text = GS.getCurrentPlayer();
-		}
+//		if (cname == "" || cname == null) {
+//			playerName.text = "Choose Name";
+//		} else {
+//			playerName.text = GS.getCurrentPlayer();
+//		}
 	}
 
 	public void NamesOnChange(int index)
 	{
 		if (names [index] == "empty slot" || names [index] == "New Player") {
-			playerName.text = "Choose Name";
+			//playerName.text = "Choose Name";
 			imgname.gameObject.SetActive (true);
 
 		} else {
 			
-			playerName.text = names[index];
+			//playerName.text = names[index];
 			GS.setCurrentPlayer(names[index]);
 			dropDown.value = index;
 
@@ -147,7 +148,7 @@ public class nameManager : MonoBehaviour {
 	
 	StoreNames();
 	GS.setCurrentPlayer(newname);
-	playerName.text = newname;
+	//playerName.text = newname;
 	nameInput.text = "";
 	imgname.gameObject.SetActive(false);
 

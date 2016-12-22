@@ -61,9 +61,9 @@ public class highscores : MonoBehaviour {
 
 	public void GetPlayer(){
 		if(playerlevel <= 1){
-			playerLevel.text = "Player Level : 1";
+			playerLevel.text = currentplayer + "'s Level : 1";
 		}else{
-			playerLevel.text = "Player Level : " + ((int)playerlevel);
+			playerLevel.text = currentplayer + "'s Level : " + ((int)playerlevel);
 		}
 	}
 

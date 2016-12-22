@@ -199,23 +199,23 @@ public class mathGame : MonoBehaviour {
 
 		//Assigning game tags to the children gameObjects from generated prefab
 		if(leftText.text == randNumber2.ToString()){
-			leftObj.transform.GetChild (1).transform.GetChild (0).gameObject.tag = "Right";
+			leftObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Right";
 
 		}else{
-			leftObj.transform.GetChild (1).transform.GetChild (0).gameObject.tag = "Wrong";
+			leftObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Wrong";
 		}
 
 		if(middleText.text == randNumber2.ToString()){
-			middleObj.transform.GetChild (1).transform.GetChild (0).gameObject.tag = "Right";
+			middleObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Right";
 
 		}else{
-			middleObj.transform.GetChild (1).transform.GetChild (0).gameObject.tag = "Wrong";
+			middleObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Wrong";
 		}
 
 		if(rightText.text == randNumber2.ToString()){
-			rightObj.transform.GetChild (1).transform.GetChild (0).gameObject.tag = "Right";
+			rightObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Right";
 		}else{
-			rightObj.transform.GetChild (1).transform.GetChild (0).gameObject.tag = "Wrong";
+			rightObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Wrong";
 		}
 			
 	}
