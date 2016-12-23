@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class gameSelected : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class gameSelected : MonoBehaviour {
 		} else {
 			Debug.LogWarning ("There is no game selected");
 		}
+	}
+
+	public void ToHomeMenu(){
+		SceneManager.LoadScene ("HomeMenu");
 	}
 
 	public void setCurrentPlayer(string name){
@@ -35,6 +40,26 @@ public class gameSelected : MonoBehaviour {
 
 	public int getGameState(){
 		return gamestate;
+	}
+
+	public void AdditionGame(){
+		gamechoice(1);
+		SceneManager.LoadScene ("testlevel");
+	}
+
+	public void SubstractionGame(){
+		gamechoice(2);
+		SceneManager.LoadScene ("testlevel");
+	}
+
+	public void MultiplicationGame(){
+		gamechoice(3);
+		SceneManager.LoadScene ("testlevel");
+	}
+
+	public void DivisionGame(){
+		gamechoice(4);
+		SceneManager.LoadScene ("testlevel");
 	}
 
 

@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class homeMenu : MonoBehaviour {
 
-	//General Options
+	public Image nameChanger;
 	private gameSelected GS;
+	private bool nameCanChange = false;
+	GameObject imgname;
 
 	void Start(){
 		Time.timeScale = 1;
 		GS = GetComponent<gameSelected> ();
+		nameChanger.gameObject.SetActive (nameCanChange);
 	}
 
 	public void ToHomeMenu(){
@@ -17,17 +21,27 @@ public class homeMenu : MonoBehaviour {
 	}
 
 	void Update(){
+		
 		if(Input.GetKey (KeyCode.Escape)){
 			Scene cscene = SceneManager.GetActiveScene ();
 			if (cscene.name != "HomeMenu") {
 				SceneManager.LoadScene ("HomeMenu");
 			}
 		}
+
+		GameObject imgname = GameObject.Find ("changeplayerpanel/Image/currentPlayer");
+
+		if(imgname){
+			
+			Text currentname = imgname.GetComponent<Text> ();
+
+			if (GS.getCurrentPlayer () == "") {
+				currentname.text = "Create a new player name...";
+			} else {
+				currentname.text = "Current Player : " + GS.getCurrentPlayer();
+			}
+		}
 	}
-
-	//General Options
-
-	//Home Menu Options
 
 	public void ToGame(){
 		SceneManager.LoadScene ("GameSelect");
@@ -48,29 +62,17 @@ public class homeMenu : MonoBehaviour {
 	public void QuitGame(){
 		Application.Quit();
 	}
+		
 
-	//Home Menu Options
+	public void changeNameEnable(){
+		nameCanChange = !nameCanChange;
 
-	//Game Select Options
+		if(nameCanChange){
+			nameChanger.gameObject.SetActive (true);
 
-	public void AdditionGame(){
-		GS.gamechoice(1);
-		SceneManager.LoadScene ("testlevel");
-	}
-
-	public void SubstractionGame(){
-		GS.gamechoice(2);
-		SceneManager.LoadScene ("testlevel");
-	}
-
-	public void MultiplicationGame(){
-		GS.gamechoice(3);
-		SceneManager.LoadScene ("testlevel");
-	}
-
-	public void DivisionGame(){
-		GS.gamechoice(4);
-		SceneManager.LoadScene ("testlevel");
+		}else{
+			nameChanger.gameObject.SetActive (false);
+		}
 	}
 
 }

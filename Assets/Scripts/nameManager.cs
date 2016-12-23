@@ -2,35 +2,36 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class nameManager : MonoBehaviour {
 
 	public InputField nameInput;
-	//public Text playerName;
 	public Dropdown dropDown;
 
-	private GameObject imgname;
+	public GameObject imgname;
 	private gameSelected GS;
 	private List<string> activenames;
 
-	string[] names = new string[7]{"New Player","empty slot","empty slot","empty slot","empty slot","empty slot","empty slot"};
+	string[] names = new string[7]{"Add Player","Add Player","Add Player","Add Player","Add Player","Add Player","Add Player"};
 	string playernames = "";
 	string firstTimeName;
 
-
+	Scene sn;
 
 	void Start(){
-		
-		imgname = GameObject.Find ("newplayerpanel");
+		sn = SceneManager.GetActiveScene ();
 		GS = GetComponent<gameSelected> ();
 		firstTimeName = PlayerPrefs.GetString("FirstPlayer");
 
-		if (firstTimeName == "true" || firstTimeName == "" || firstTimeName == null) {
-			PlayerPrefs.SetString ("FirstPlayer", "true");
-			imgname.gameObject.SetActive (true);
-		} else {
-			imgname.gameObject.SetActive(false);
-		}
+		if (sn.name == "GameSelect") {
+			if (firstTimeName == "true" || firstTimeName == "" || firstTimeName == null) {
+				PlayerPrefs.SetString ("FirstPlayer", "true");
+				imgname.gameObject.SetActive (true);
+			} else {
+				imgname.gameObject.SetActive (false);
+			}
+		} 
 
 		activenames = new List<string>();
 
@@ -38,7 +39,6 @@ public class nameManager : MonoBehaviour {
 
 		for (int n = 0; n < names.Length; n++)
 		{
-			
 			if (names[n] == GS.getCurrentPlayer())
 			{
 				dropDown.value = n;
@@ -50,37 +50,42 @@ public class nameManager : MonoBehaviour {
 
 	private void PopulateList()
 	{
+		sn = SceneManager.GetActiveScene ();
+
+
+
 		activenames.Clear();
 		dropDown.ClearOptions();
 		//activenames.Add("New Player");
 
 		foreach (string name in names) {
+			if (sn.name == "HomeMenu") {
+				if(name == "Add Player"){
+					break;
+				}
+			}
 			activenames.Add (name);
+
+
+
 		}
 		dropDown.AddOptions(activenames);
 
-		//string cname = GS.getCurrentPlayer ();
-
-//		if (cname == "" || cname == null) {
-//			playerName.text = "Choose Name";
-//		} else {
-//			playerName.text = GS.getCurrentPlayer();
-//		}
 	}
 
 	public void NamesOnChange(int index)
 	{
-		if (names [index] == "empty slot" || names [index] == "New Player") {
-			//playerName.text = "Choose Name";
+		if (names [index] == "Add Player") {
+			
 			imgname.gameObject.SetActive (true);
 
 		} else {
 			
-			//playerName.text = names[index];
 			GS.setCurrentPlayer(names[index]);
 			dropDown.value = index;
 
 		}
+			
 	}
 
 	public void RetrieveNames(){
@@ -122,15 +127,17 @@ public class nameManager : MonoBehaviour {
 	}
 
 	public void GetName(string newname){
+		sn = SceneManager.GetActiveScene ();
+
 		if (newname.Equals ("")) {
 			Debug.Log("Cannot enter empty name...Please enter before saving");
 			return;
 		}
 
-		if (names.Contains("empty slot")){
+		if (names.Contains("Add Player")){
 			for (int index = 0; index < names.Length; ++index)
 			{
-				if (names[index] == "empty slot")
+				if (names[index] == "Add Player")
 				{
 					names[index] = newname;
 					break;
@@ -150,7 +157,18 @@ public class nameManager : MonoBehaviour {
 	GS.setCurrentPlayer(newname);
 	//playerName.text = newname;
 	nameInput.text = "";
-	imgname.gameObject.SetActive(false);
+
+		if (sn.name == "GameSelect") {
+			imgname.gameObject.SetActive(false);
+		} else if(sn.name == "HomeMenu"){
+
+			for(int nm = 0; nm < names.Length; nm++){
+				if (names[nm] == newname) {
+					dropDown.value = nm;
+					break;
+				}
+			}
+		}
 
 	}
 		
