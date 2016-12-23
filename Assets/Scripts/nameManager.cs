@@ -59,17 +59,22 @@ public class nameManager : MonoBehaviour {
 		//activenames.Add("New Player");
 
 		foreach (string name in names) {
+			
 			if (sn.name == "HomeMenu") {
-				if(name == "Add Player"){
+				if (name == "Add Player") {
 					break;
 				}
+
+			} else {
+				activenames.Add (name);
 			}
-			activenames.Add (name);
-
-
-
 		}
-		dropDown.AddOptions(activenames);
+
+		if (activenames.Count == 0) {
+			activenames.Add ("No names");
+		} 
+		dropDown.AddOptions (activenames);
+		
 
 	}
 
