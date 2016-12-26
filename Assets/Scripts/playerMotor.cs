@@ -88,10 +88,7 @@ public class playerMotor : MonoBehaviour {
 					}
 				}			
 			}
-
-//			moveVector = transform.position;
-//			moveVector.x = lane;
-//			transform.position = moveVector;
+				
 			break;
 
 		case 1:
@@ -113,20 +110,12 @@ public class playerMotor : MonoBehaviour {
 							if (lane < 3.0f) {
 								lane += 3.0f;
 							}
-							Debug.Log ("SWIPE RIGHT");
 						} else {
 							if (lane > -3.0f) {
 								lane -= 3.0f;
 							}
-							Debug.Log ("SWIPE LEFT");
 						}
 					}
-
-
-
-//					moveVector = transform.position;
-//					moveVector.x = lane;
-//					transform.position = moveVector;
 
 					return;
 

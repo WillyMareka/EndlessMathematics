@@ -55,6 +55,10 @@ public class homeMenu : MonoBehaviour {
 		SceneManager.LoadScene ("Achievements");
 	}
 
+	public void ToOptions(){
+		SceneManager.LoadScene ("Options");
+	}
+
 	public void ToCredits(){
 		SceneManager.LoadScene ("Credits");
 	}
