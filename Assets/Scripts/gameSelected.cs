@@ -6,6 +6,7 @@ public class gameSelected : MonoBehaviour {
 
 	public static int gamestate = 0;
 	public static string currentplayer;
+	public static int characterinput = 0;
 
 
 	public void gamechoice(int game){
@@ -36,6 +37,25 @@ public class gameSelected : MonoBehaviour {
 	public string getCurrentPlayer(){
 		currentplayer = PlayerPrefs.GetString ("CurrentPlayer");
 		return currentplayer;
+	}
+
+	public int getCharacterInput(){
+		characterinput = PlayerPrefs.GetInt ("CharacterInput");
+
+		if (characterinput == null) {
+			characterinput = 0;
+		}
+
+		return characterinput;
+	}
+
+	public void setCharacterInput(int cinput){
+		if (cinput == null) {
+			characterinput = 0;
+		} else {
+			characterinput = cinput;
+		}
+		PlayerPrefs.SetInt ("CharacterInput", characterinput);
 	}
 
 	public int getGameState(){

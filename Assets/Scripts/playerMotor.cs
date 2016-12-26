@@ -12,12 +12,12 @@ public class playerMotor : MonoBehaviour {
 	private float startTime;
 	private float experience = 5;
 	private bool checkTip = true;
-	int exp, gametype = 0;
+	int exp, characterinput, gametype = 0;
 	private bool canMove = false;
 
 	public Image imageTip;
 	public float speed = 5.0f;
-	public GameObject GS,MG;
+	public GameObject GS,MG,controllers;
 
 
 	//[SerializeField] private float minimumSwipeDistanceY;
@@ -28,13 +28,16 @@ public class playerMotor : MonoBehaviour {
 
 	void Start () {
 		gametype = GS.GetComponent<gameSelected> ().getGameState();
+		characterinput = GS.GetComponent<gameSelected> ().getCharacterInput();
+
+		controllers.SetActive (false);
 
 		controller = GetComponent<CharacterController>();
+
 		moveVector = Vector3.zero;
 		lane = 0;
 		Time.timeScale = 1;
 		startTime = Time.deltaTime;
-
 
 	}
 	
@@ -50,56 +53,100 @@ public class playerMotor : MonoBehaviour {
 				RemoveTip ();
 			}
 		}
-
-
-
+			
 		controller.Move ((Vector3.forward * speed) * Time.deltaTime);
 
 
 		if (Time.time - startTime < animationDuration && canMove == false) {
 			return;
 		}
-			
-		if (Input.touchCount > 0 ){
-			Debug.Log ("before");
-			t = Input.touches[0];
 
-			switch (t.phase) {
+		switch(characterinput){
+		case 0:
+			controllers.SetActive (true);
 
-			case TouchPhase.Began:
-				startPosition = t.position;
-				return;
+			if (Input.GetKeyDown (KeyCode.D)) {
+				if (lane < 3.0f) {
+					lane += 3.0f;
+				}
+			} else if (Input.GetKeyDown (KeyCode.A)) {
+				if (lane > -3.0f) {
+					lane -= 3.0f;
+				}
+			}
 
-			case TouchPhase.Ended:
-				Vector3 positionDelta = (Vector3)t.position - startPosition;
-
-				if (Mathf.Abs (positionDelta.x) > minimumSwipeDistanceX) {
-					if (positionDelta.x > 0) {
+			if (Input.GetMouseButtonDown (0)) {
+				if (Input.mousePosition.y > Screen.height / 3.5) {
+					if (Input.mousePosition.x > Screen.width / 2) {
 						if (lane < 3.0f) {
 							lane += 3.0f;
 						}
-						Debug.Log ("SWIPE RIGHT");
 					} else {
 						if (lane > -3.0f) {
 							lane -= 3.0f;
 						}
-						Debug.Log ("SWIPE LEFT");
 					}
-				}
-
-
-
-				moveVector = transform.position;
-				moveVector.x = lane;
-				transform.position = moveVector;
-
-			return;
-
-			default:
-				Debug.Log ("Swipper no swipping...");
-				return;
+				}			
 			}
+
+//			moveVector = transform.position;
+//			moveVector.x = lane;
+//			transform.position = moveVector;
+			break;
+
+		case 1:
+			
+			if (Input.touchCount > 0 ){
+				t = Input.touches[0];
+
+				switch (t.phase) {
+
+				case TouchPhase.Began:
+					startPosition = t.position;
+					return;
+
+				case TouchPhase.Ended:
+					Vector3 positionDelta = (Vector3)t.position - startPosition;
+
+					if (Mathf.Abs (positionDelta.x) > minimumSwipeDistanceX) {
+						if (positionDelta.x > 0) {
+							if (lane < 3.0f) {
+								lane += 3.0f;
+							}
+							Debug.Log ("SWIPE RIGHT");
+						} else {
+							if (lane > -3.0f) {
+								lane -= 3.0f;
+							}
+							Debug.Log ("SWIPE LEFT");
+						}
+					}
+
+
+
+//					moveVector = transform.position;
+//					moveVector.x = lane;
+//					transform.position = moveVector;
+
+					return;
+
+				default:
+					Debug.Log ("Swipper no swipping...");
+					return;
+				}
+			}
+
+			break;
+
+		default:
+			Debug.Log ("No input has been selected");
+			break;
 		}
+			
+		moveVector = transform.position;
+		moveVector.x = lane;
+		transform.position = moveVector;
+
 	}
 
 	public void SetSpeed(float newspeed){

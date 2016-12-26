@@ -35,7 +35,7 @@ public class homeMenu : MonoBehaviour {
 			
 			Text currentname = imgname.GetComponent<Text> ();
 
-			if (GS.getCurrentPlayer () == "") {
+			if (GS.getCurrentPlayer () == "" || GS.getCurrentPlayer () == "Add Player" || GS.getCurrentPlayer () == "empty slot") {
 				currentname.text = "Create a new player name...";
 			} else {
 				currentname.text = "Current Player : " + GS.getCurrentPlayer();
