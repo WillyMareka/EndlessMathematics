@@ -39,32 +39,28 @@ public class optionsManager : MonoBehaviour {
 		GS.setCharacterInput (1);
 	}
 
+	public void MusicOff(){
+		musicOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
+		musicOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+		GS.setMusic (0);
+	}
 
 	public void MusicOn(){
 		musicOn.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
 		musicOff.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
-		GS.setMusic (0);
-	}
-
-	public void MusicOff(){
-		musicOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
-		musicOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
 		GS.setMusic (1);
-	}
-
-
-	public void SoundOn(){
-		soundOn.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
-		soundOff.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
-		GS.setSound (0);
 	}
 
 	public void SoundOff(){
 		soundOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 		soundOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
-		GS.setSound (1);
+		GS.setSound (0);
 	}
 
-
+	public void SoundOn(){
+		soundOn.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+		soundOff.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
+		GS.setSound (1);
+	}
 
 }

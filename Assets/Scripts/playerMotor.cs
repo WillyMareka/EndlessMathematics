@@ -12,27 +12,29 @@ public class playerMotor : MonoBehaviour {
 	private float startTime;
 	private float experience = 5;
 	private bool checkTip = true;
-	int exp, characterinput, gametype = 0;
+	private int exp, characterinput, gametype = 0, canProduceSound;
 	private bool canMove = false;
+	private float minimumSwipeDistanceX = 200;
+	private Touch t = default(Touch);
+	private Vector3 startPosition = Vector3.zero;
+	private AudioSource audioSource;
 
 	public Image imageTip;
 	public float speed = 5.0f;
 	public GameObject GS,MG,controllers;
+	public AudioClip correctSound, incorrectSound;
 
 
-	//[SerializeField] private float minimumSwipeDistanceY;
-	private float minimumSwipeDistanceX = 200;
-	private Touch t = default(Touch);
-	private Vector3 startPosition = Vector3.zero;
 
 
 	void Start () {
 		gametype = GS.GetComponent<gameSelected> ().getGameState();
 		characterinput = GS.GetComponent<gameSelected> ().getCharacterInput();
-
+		canProduceSound = GS.GetComponent<gameSelected> ().getSound ();
 		controllers.SetActive (false);
 
 		controller = GetComponent<CharacterController>();
+		audioSource = GetComponent<AudioSource> ();
 
 		moveVector = Vector3.zero;
 		lane = 0;
@@ -174,12 +176,24 @@ public class playerMotor : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		
 		if (other.transform.position.z > transform.position.z + 0.1f) {
 			if (other.tag == "Wrong") {
 				isWrong = true;
+
+				if(canProduceSound == 1){
+					audioSource.clip = incorrectSound;
+					audioSource.Play ();
+				}
+
 				GetComponent<score> ().OnWrongAnswer (gametype);
 
 			} else if (other.tag == "Right") {
+				if (canProduceSound == 1) {
+					audioSource.clip = correctSound;
+					audioSource.Play ();
+				}
+
 				switch (gametype) {
 				case 1:
 					MG.GetComponent<mathGame> ().AdditionTiles ();
