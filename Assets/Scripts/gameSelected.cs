@@ -68,7 +68,8 @@ public class gameSelected : MonoBehaviour {
 		characterinput = PlayerPrefs.GetInt ("CharacterInput");
 
 		if (PlayerPrefs.HasKey("CharacterInput") == false) {
-			characterinput = 0;
+			PlayerPrefs.SetInt ("CharacterInput", 1);
+			characterinput = 1;
 		}
 
 		return characterinput;
@@ -84,7 +85,8 @@ public class gameSelected : MonoBehaviour {
 		musicinput = PlayerPrefs.GetInt ("MusicInput");
 
 		if (PlayerPrefs.HasKey("MusicInput") == false) {
-			musicinput = 0;
+			PlayerPrefs.SetInt ("MusicInput", 1);
+			musicinput = 1;
 		}
 
 		return musicinput;
@@ -100,7 +102,8 @@ public class gameSelected : MonoBehaviour {
 		soundinput = PlayerPrefs.GetInt ("SoundInput");
 
 		if (PlayerPrefs.HasKey("SoundInput") == false) {
-			soundinput = 0;
+			PlayerPrefs.SetInt ("SoundInput", 1);
+			soundinput = 1;
 		}
 
 		return soundinput;
