@@ -27,12 +27,15 @@ public class musicScript : MonoBehaviour {
 	void Update(){
 		if (this.gameObject) {
 			sn = SceneManager.GetActiveScene ();
-			if(PlayerPrefs.GetInt ("MusicInput") == 1){
+			if (PlayerPrefs.GetInt ("MusicInput") == 1) {
 				if (sn.name == "testlevel") {
 					Destroy (this.gameObject);
+
 				} else {
 					DontDestroyOnLoad (this.gameObject);
 				}
+			} else {
+				Destroy (this.gameObject);
 			}
 
 		}
