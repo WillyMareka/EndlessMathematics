@@ -7,7 +7,7 @@ public class mathGame : MonoBehaviour {
 	
 	int randNumber1, randNumber2, generateanswer, boxselect;
 	int tip1, tip2, tipanswer, lasttry = 0, lcount = 0, mcount = 0, rcount = 0;
-	public GameObject emptyObj, choiceObj, GS, PS;
+	public GameObject emptyObj, choiceObj, GS;
 	public Text questionbox, pauseTip;
 	private int[] numbers;
 
@@ -20,7 +20,6 @@ public class mathGame : MonoBehaviour {
 	private Transform playerTransform;
 	private int i = 0;
 	private List<GameObject> activeTiles, activeTiles2;
-	private bool isPaused = false;
 
 
 	void Start () {
@@ -83,16 +82,6 @@ public class mathGame : MonoBehaviour {
 	}
 
 	void Update () {
-		
-		if(Input.GetKeyDown (KeyCode.Escape)){
-			if (isPaused == false) {
-				PS.GetComponent<pauseScript> ().PauseGame ();
-				isPaused = true;
-			} else {
-				PS.GetComponent<pauseScript> ().PauseGame ();
-				isPaused = false;
-			}
-		}
 
 		if (playerTransform.position.z - safeZone > i * tileSize) {
 			DeleteTile ();

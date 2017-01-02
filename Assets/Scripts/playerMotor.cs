@@ -13,7 +13,7 @@ public class playerMotor : MonoBehaviour {
 	private float experience = 5;
 	private bool checkTip = true;
 	private int exp, characterinput, gametype = 0, canProduceSound;
-	private bool canMove = false;
+	private bool canMove = false, isPaused = false;
 	private float minimumSwipeDistanceX = 200;
 	private Touch t = default(Touch);
 	private Vector3 startPosition = Vector3.zero;
@@ -21,7 +21,7 @@ public class playerMotor : MonoBehaviour {
 
 	public Image imageTip;
 	public float speed = 5.0f;
-	public GameObject GS,MG,controllers;
+	public GameObject GS,MG,PS,controllers;
 	public AudioClip correctSound, incorrectSound;
 
 
@@ -48,6 +48,16 @@ public class playerMotor : MonoBehaviour {
 		
 		if (isWrong) {
 			return;
+		} else {
+			if(Input.GetKeyDown (KeyCode.Escape)){
+				if (isPaused == false) {
+					PS.GetComponent<pauseScript> ().PauseGame ();
+					isPaused = true;
+				} else {
+					PS.GetComponent<pauseScript> ().PauseGame ();
+					isPaused = false;
+				}
+			}
 		}
 
 		if(GameObject.Find("Canvas/ImageTip") != null){

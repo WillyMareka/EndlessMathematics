@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class gameSelected : MonoBehaviour {
 
-	public static int gamestate = 0;
+	public static int gamestate = 0, gamepause = 0;
 	public static string currentplayer;
 	public static int characterinput = 0, musicinput = 0, soundinput = 0;
 
