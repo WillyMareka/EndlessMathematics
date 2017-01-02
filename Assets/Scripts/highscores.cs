@@ -13,9 +13,12 @@ public class highscores : MonoBehaviour {
 	int toNextPlayerLevel = 250;
 	string currentplayer;
 
+	private gameSelected GS;
+
 	// Use this for initialization
 	void Start () {
 		currentplayer = PlayerPrefs.GetString("CurrentPlayer");
+		GS = GetComponent<gameSelected> ();
 
 		addscore.text = "Highscore : " + ((int)PlayerPrefs.GetFloat (currentplayer+"_Addscore"));
 		subtractscore.text = "Highscore : " + ((int)PlayerPrefs.GetFloat (currentplayer+"_Subtractscore"));
@@ -35,6 +38,11 @@ public class highscores : MonoBehaviour {
 		divideexp.text = "Experience : " + divideexperience;
 
 		setLevel ();
+
+		if(GS.getMusic() == 0){
+			GameObject gomusic = GameObject.Find ("HomeMusic");
+			Destroy (gomusic, 0);
+		}
 	}
 
 	void setLevel(){

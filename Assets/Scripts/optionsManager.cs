@@ -22,8 +22,28 @@ public class optionsManager : MonoBehaviour {
 			inputTap.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
 			inputSwipe.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 		} else if(inputtype == 1) {
-			inputSwipe.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
 			inputTap.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
+			inputSwipe.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+		}
+
+		musictype = GS.getMusic ();
+		if (musictype == 0) {
+			musicOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
+			musicOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+
+		} else if(musictype == 1) {
+			musicOn.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+			musicOff.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
+		}
+
+		soundtype = GS.getSound ();
+		if (soundtype == 0) {
+			soundOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
+			soundOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+
+		} else if(soundtype == 1) {
+			soundOn.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
+			soundOff.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 		}
 	}
 

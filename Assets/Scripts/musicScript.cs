@@ -11,21 +11,30 @@ public class musicScript : MonoBehaviour {
 	}
 
 	void Awake(){
+		
 		if(instance != null && instance != this){
 			Destroy(this.gameObject);
 		}else{
 			instance = this;
+		}
+		if (PlayerPrefs.GetInt ("MusicInput") == 1) {
+			DontDestroyOnLoad (this.gameObject);
+		} else {
+			Destroy (this.gameObject);
 		}
 	}
 
 	void Update(){
 		if (this.gameObject) {
 			sn = SceneManager.GetActiveScene ();
-			if (sn.name == "testlevel") {
-				Destroy (this.gameObject);
-			} else {
-				DontDestroyOnLoad (this.gameObject);
+			if(PlayerPrefs.GetInt ("MusicInput") == 1){
+				if (sn.name == "testlevel") {
+					Destroy (this.gameObject);
+				} else {
+					DontDestroyOnLoad (this.gameObject);
+				}
 			}
+
 		}
 	}
 
