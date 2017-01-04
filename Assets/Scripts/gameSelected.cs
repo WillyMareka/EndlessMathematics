@@ -22,15 +22,15 @@ public class gameSelected : MonoBehaviour {
 	}
 
 	public void setCurrentPlayer(string name){
-		
+		//Debug.Log (name);
 		if (currentplayer == "") {
-			currentplayer = "empty slot";
+			currentplayer = "Add Player";
 		} else {
 			currentplayer = name;
 		}
-		//Debug.Log (currentplayer);
+
 		PlayerPrefs.SetString ("FirstPlayer", "false");
-		PlayerPrefs.SetString ("CurrentPlayer", currentplayer);
+		PlayerPrefs.SetString ("CurrentPlayer", name);
 
 	}
 

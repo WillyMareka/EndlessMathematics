@@ -24,14 +24,15 @@ public class nameManager : MonoBehaviour {
 		GS = GetComponent<gameSelected> ();
 		firstTimeName = PlayerPrefs.GetString("FirstPlayer");
 
-		if (sn.name == "GameSelect") {
+		//if (sn.name == "GameSelect") {
 			if (firstTimeName == "true" || firstTimeName == "" || firstTimeName == null) {
 				PlayerPrefs.SetString ("FirstPlayer", "true");
-				imgname.gameObject.SetActive (true);
+				imgname.SetActive (true);
 			} else {
-				imgname.gameObject.SetActive (false);
+				imgname.SetActive (false);
+				//Debug.Log ("Reached");
 			}
-		} 
+		//} 
 
 		activenames = new List<string>();
 
@@ -50,27 +51,24 @@ public class nameManager : MonoBehaviour {
 
 	private void PopulateList()
 	{
+		int counter = 0;
 		sn = SceneManager.GetActiveScene ();
-
-
 
 		activenames.Clear();
 		dropDown.ClearOptions();
-		//activenames.Add("New Player");
 
-		foreach (string name in names) {
 			
+		foreach (string namer in names) {
 			if (sn.name == "HomeMenu") {
-				if (name == "Add Player") {
+				if (namer == "Add Player") {
 					break;
 				}
-
-			} else {
-				activenames.Add (name);
-			}
+			} 
+			activenames.Add (namer);
+			counter++;
 		}
 
-		if (activenames.Count == 0) {
+		if (counter == 0) {
 			activenames.Add ("No names");
 		} 
 		dropDown.AddOptions (activenames);
@@ -127,7 +125,6 @@ public class nameManager : MonoBehaviour {
 		}
 
 		PlayerPrefs.SetString("AllPlayerNames", playernames);
-		//Debug.Log ("reached : "+ PlayerPrefs.GetString("AllPlayerNames"));
 		PopulateList();
 	}
 
@@ -140,7 +137,7 @@ public class nameManager : MonoBehaviour {
 		}
 
 		if (names.Contains("Add Player")){
-			for (int index = 0; index < names.Length; ++index)
+			for (int index = 0; index < names.Length; index++)
 			{
 				if (names[index] == "Add Player")
 				{
@@ -173,11 +170,6 @@ public class nameManager : MonoBehaviour {
 				}
 			}
 		}
-
-		if (PlayerPrefs.GetString ("FirstPlayer") == "true") {
-			PlayerPrefs.SetString ("FirstPlayer", "false");
-		}
-
 	}
 		
 	public void CancelName(){

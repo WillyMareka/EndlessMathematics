@@ -15,9 +15,6 @@ public class homeMenu : MonoBehaviour {
 		Time.timeScale = 1;
 		GS = GetComponent<gameSelected> ();
 
-		if (cscene.name == "HomeMenu") {
-			nameChanger.gameObject.SetActive (nameCanChange);
-		}
 	}
 
 	public void ToHomeMenu(){
