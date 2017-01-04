@@ -27,7 +27,7 @@ public class optionsManager : MonoBehaviour {
 		}
 
 		musictype = GS.getMusic ();
-		if (musictype == 0) {
+		if (musictype == 2) {
 			musicOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 			musicOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
 
@@ -37,7 +37,7 @@ public class optionsManager : MonoBehaviour {
 		}
 
 		soundtype = GS.getSound ();
-		if (soundtype == 0) {
+		if (soundtype == 2) {
 			soundOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 			soundOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
 
@@ -62,7 +62,7 @@ public class optionsManager : MonoBehaviour {
 	public void MusicOff(){
 		musicOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 		musicOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
-		GS.setMusic (0);
+		GS.setMusic (2);
 	}
 
 	public void MusicOn(){
@@ -74,7 +74,7 @@ public class optionsManager : MonoBehaviour {
 	public void SoundOff(){
 		soundOn.GetComponent<Image> ().color = new Color (255f/255f,109f/255f,109f/255f);
 		soundOff.GetComponent<Image> ().color = new Color (148f/255f,255f/255f,162f/255f);
-		GS.setSound (0);
+		GS.setSound (2);
 	}
 
 	public void SoundOn(){

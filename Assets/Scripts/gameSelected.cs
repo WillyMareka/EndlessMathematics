@@ -68,8 +68,8 @@ public class gameSelected : MonoBehaviour {
 		characterinput = PlayerPrefs.GetInt ("CharacterInput");
 
 		if (PlayerPrefs.HasKey("CharacterInput") == false) {
-			PlayerPrefs.SetInt ("CharacterInput", 1);
-			characterinput = 1;
+			PlayerPrefs.SetInt ("CharacterInput", 0);
+			characterinput = 0;
 		}
 
 		return characterinput;

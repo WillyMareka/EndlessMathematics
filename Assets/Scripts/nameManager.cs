@@ -160,7 +160,6 @@ public class nameManager : MonoBehaviour {
 	
 	StoreNames();
 	GS.setCurrentPlayer(newname);
-	//playerName.text = newname;
 	nameInput.text = "";
 
 		if (sn.name == "GameSelect") {
@@ -173,6 +172,10 @@ public class nameManager : MonoBehaviour {
 					break;
 				}
 			}
+		}
+
+		if (PlayerPrefs.GetString ("FirstPlayer") == "true") {
+			PlayerPrefs.SetString ("FirstPlayer", "false");
 		}
 
 	}

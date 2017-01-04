@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class musicScript : MonoBehaviour {
 
 	Scene sn;
+	private string currentplayer;
 
 	private static musicScript instance = null;
 	public static musicScript Instance{
@@ -11,16 +12,24 @@ public class musicScript : MonoBehaviour {
 	}
 
 	void Awake(){
-		
+
 		if(instance != null && instance != this){
 			Destroy(this.gameObject);
 		}else{
 			instance = this;
 		}
-		if (PlayerPrefs.GetInt ("MusicInput") == 1) {
+
+		if (PlayerPrefs.GetInt ("MusicInput") == 0) {
+			PlayerPrefs.SetInt ("MusicInput", 1);
+
+		}
+
+		if ((PlayerPrefs.GetInt ("MusicInput") == 1)) {
 			DontDestroyOnLoad (this.gameObject);
-		} else {
+
+		} else if((PlayerPrefs.GetInt ("MusicInput") == 2)){
 			Destroy (this.gameObject);
+
 		}
 	}
 

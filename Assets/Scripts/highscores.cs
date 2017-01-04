@@ -27,8 +27,8 @@ public class highscores : MonoBehaviour {
 
 		addexperience = ((int)PlayerPrefs.GetFloat (currentplayer+"_Addexp"));
 		subtractexperience = ((int)PlayerPrefs.GetFloat (currentplayer+"_Subtractexp"));
-		multiplyexperience = ((int)PlayerPrefs.GetFloat (currentplayer+"_Multiplyexp"));
-		divideexperience = ((int)PlayerPrefs.GetFloat (currentplayer+"_Divideexp"));
+		multiplyexperience = ((int)PlayerPrefs.GetFloat (currentplayer+"_Multiplicationexp"));
+		divideexperience = ((int)PlayerPrefs.GetFloat (currentplayer+"_Divisionexp"));
 
 		playerlevel = PlayerPrefs.GetFloat (currentplayer+"_PlayerLevel");
 
@@ -69,8 +69,8 @@ public class highscores : MonoBehaviour {
 
 	public void GetPlayer(){
 		if(playerlevel <= 1){
-			if (currentplayer == "") {
-				playerLevel.text = "Player's Level : 1";
+			if (currentplayer == "" || currentplayer == "empty slot" || currentplayer == "Add Player") {
+				playerLevel.text = "Player's Level : 1"; 
 			}else{
 				playerLevel.text = currentplayer + "'s Level : 1";
 			}

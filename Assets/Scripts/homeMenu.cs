@@ -9,11 +9,15 @@ public class homeMenu : MonoBehaviour {
 	private gameSelected GS;
 	private bool nameCanChange = false;
 	GameObject imgname;
+	Scene cscene;
 
 	void Start(){
 		Time.timeScale = 1;
 		GS = GetComponent<gameSelected> ();
-		nameChanger.gameObject.SetActive (nameCanChange);
+
+		if (cscene.name == "HomeMenu") {
+			nameChanger.gameObject.SetActive (nameCanChange);
+		}
 	}
 
 	public void ToHomeMenu(){
@@ -23,7 +27,7 @@ public class homeMenu : MonoBehaviour {
 	void Update(){
 		
 		if(Input.GetKey (KeyCode.Escape)){
-			Scene cscene = SceneManager.GetActiveScene ();
+			cscene = SceneManager.GetActiveScene ();
 			if (cscene.name != "HomeMenu") {
 				SceneManager.LoadScene ("HomeMenu");
 			}
