@@ -37,8 +37,6 @@ public class score : MonoBehaviour {
 			playerScore += Time.deltaTime * difficultyLevel;
 			playerExp = playerScore * 2;
 		}
-			
-		Debug.Log ("Score: "+playerScore+" Exp: "+playerExp);
 
 		if (playerScore < 0) {
 			scoreText.text = ("Get ready");
