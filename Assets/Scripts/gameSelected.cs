@@ -8,6 +8,8 @@ public class gameSelected : MonoBehaviour {
 	public static string currentplayer;
 	public static int characterinput = 0, musicinput = 0, soundinput = 0;
 
+	private nameManager NM;
+
 
 	public void gamechoice(int game){
 		if (game != 0) {
@@ -44,23 +46,40 @@ public class gameSelected : MonoBehaviour {
 	}
 
 	public void AdditionGame(){
-		gamechoice(1);
-		SceneManager.LoadScene ("testlevel");
+		if (getCurrentPlayer () == "") {
+			NameRequest ();
+		} else {
+			gamechoice(1);
+			SceneManager.LoadScene ("testlevel");
+		}
+
 	}
 
 	public void SubstractionGame(){
-		gamechoice(2);
-		SceneManager.LoadScene ("testlevel");
+		if (getCurrentPlayer () == "") {
+			NameRequest ();
+		} else {
+			gamechoice (2);
+			SceneManager.LoadScene ("testlevel");
+		}
 	}
 
 	public void MultiplicationGame(){
-		gamechoice(3);
-		SceneManager.LoadScene ("testlevel");
+		if (getCurrentPlayer () == "") {
+			NameRequest ();
+		} else {
+			gamechoice (3);
+			SceneManager.LoadScene ("testlevel");
+		}
 	}
 
 	public void DivisionGame(){
-		gamechoice(4);
-		SceneManager.LoadScene ("testlevel");
+		if (getCurrentPlayer () == "") {
+			NameRequest ();
+		} else {
+			gamechoice (4);
+			SceneManager.LoadScene ("testlevel");
+		}
 	}
 
 
@@ -112,6 +131,11 @@ public class gameSelected : MonoBehaviour {
 	public void setSound(int sinput){
 		soundinput = sinput;
 		PlayerPrefs.SetInt ("SoundInput", soundinput);
+	}
+
+	public void NameRequest(){
+		NM = GetComponent<nameManager> ();
+		NM.NameRequesting ("Please enter a your name first");
 	}
 
 

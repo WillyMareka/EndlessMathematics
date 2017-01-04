@@ -8,6 +8,7 @@ public class nameManager : MonoBehaviour {
 
 	public InputField nameInput;
 	public Dropdown dropDown;
+	public Text namedetails;
 
 	public GameObject imgname;
 	private gameSelected GS;
@@ -24,15 +25,13 @@ public class nameManager : MonoBehaviour {
 		GS = GetComponent<gameSelected> ();
 		firstTimeName = PlayerPrefs.GetString("FirstPlayer");
 
-		//if (sn.name == "GameSelect") {
 			if (firstTimeName == "true" || firstTimeName == "" || firstTimeName == null) {
 				PlayerPrefs.SetString ("FirstPlayer", "true");
 				imgname.SetActive (true);
 			} else {
 				imgname.SetActive (false);
-				//Debug.Log ("Reached");
 			}
-		//} 
+
 
 		activenames = new List<string>();
 
@@ -81,7 +80,7 @@ public class nameManager : MonoBehaviour {
 		if (names [index] == "Add Player") {
 			
 			imgname.gameObject.SetActive (true);
-
+			namedetails.text = "Enter your name below";
 		} else {
 			
 			GS.setCurrentPlayer(names[index]);
@@ -89,6 +88,11 @@ public class nameManager : MonoBehaviour {
 
 		}
 			
+	}
+
+	public void NameRequesting(string details){
+		imgname.gameObject.SetActive (true);
+		namedetails.text = ""+details;
 	}
 
 	public void RetrieveNames(){
