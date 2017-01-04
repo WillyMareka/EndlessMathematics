@@ -206,6 +206,9 @@ public class mathGame : MonoBehaviour {
 		}else{
 			rightObj.transform.GetChild (0).transform.GetChild (0).transform.GetChild (0).gameObject.tag = "Wrong";
 		}
+
+		Destroy (activeTiles2[0]);
+		activeTiles2.RemoveAt (0);
 			
 	}
 
@@ -218,22 +221,23 @@ public class mathGame : MonoBehaviour {
 		
 	}
 
+	void RandomNumbers(){
+		randNumber1 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
+		randNumber2 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
+	}
+
 	public void AdditionTiles(){
 		//randNumber2 is correct answer...
 		//...the rest are wrong
 
 		//Number 1 & 2 generation
-		randNumber1 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
-		randNumber2 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
+		RandomNumbers();
 
 		//Addition Game Calculation
 		generateanswer = randNumber1 + randNumber2;
 
 		GenerateOptions ();
 		RandomAssigning ();
-
-		Destroy (activeTiles2[0]);
-		activeTiles2.RemoveAt (0);
 
 		questionbox.text = "" + randNumber1 + " + __ = " + generateanswer + "";
 
@@ -247,17 +251,13 @@ public class mathGame : MonoBehaviour {
 		//...the rest are wrong
 
 		//Number 1 & 2 generation
-		randNumber1 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
-		randNumber2 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
+		RandomNumbers();
 
 		//Substraction Game Calculation
 		generateanswer = randNumber1 + randNumber2;
 
 		GenerateOptions ();
 		RandomAssigning ();
-
-		Destroy (activeTiles2[0]);
-		activeTiles2.RemoveAt (0);
 
 		//Debug.Log (randNumber1 +" + "+ randNumber2 +" = "+ generateanswer);
 		questionbox.text = "" + generateanswer + " - __ = " + randNumber1 + "";
@@ -269,8 +269,7 @@ public class mathGame : MonoBehaviour {
 		//...the rest are wrong
 
 		//Number 1 & 2 generation
-		randNumber1 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
-		randNumber2 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
+		RandomNumbers();
 
 		//Multiplication Game Calculation
 		generateanswer = randNumber1 * randNumber2;
@@ -291,18 +290,13 @@ public class mathGame : MonoBehaviour {
 		//...the rest are wrong
 
 		//Number 1 & 2 generation
-		randNumber1 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
-		randNumber2 = (int)(Mathf.Abs(Random.Range (1.0f,10.0f)));
-
-		Destroy (activeTiles2[0]);
-		activeTiles2.RemoveAt (0);
+		RandomNumbers();
 
 		//Division Game Calculation
 		generateanswer = randNumber1 * randNumber2;
 
 		GenerateOptions ();
 		RandomAssigning ();
-
 
 		//Debug.Log (randNumber1 +" + "+ randNumber2 +" = "+ generateanswer);
 		questionbox.text = "" + generateanswer + " / __ = " + randNumber1 + "";
