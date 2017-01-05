@@ -9,8 +9,7 @@ public class gameSelected : MonoBehaviour {
 	public static int characterinput = 0, musicinput = 0, soundinput = 0;
 
 	private nameManager NM;
-
-
+		
 	public void gamechoice(int game){
 		if (game != 0) {
 			gamestate = game;

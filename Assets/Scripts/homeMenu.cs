@@ -16,7 +16,7 @@ public class homeMenu : MonoBehaviour {
 		GS = GetComponent<gameSelected> ();
 
 	}
-
+		
 	public void ToHomeMenu(){
 		SceneManager.LoadScene ("HomeMenu");
 	}
