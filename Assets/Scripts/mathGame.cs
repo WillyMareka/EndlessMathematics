@@ -122,15 +122,15 @@ public class mathGame : MonoBehaviour {
 
 		if((lasttry == 1 || lasttry == 4) && lcount == 2){
 			numbers = new int[]{2,3,5,6};
-			boxselect = numbers[Random.Range(0,numbers.Length)];
+			boxselect = numbers[Random.Range(0,numbers.Length - 1)];
 			lcount = 0;
 		}else if((lasttry == 2 || lasttry == 5) && mcount == 2){
 			numbers = new int[]{1,3,4,6};
-			boxselect = numbers[Random.Range(0,numbers.Length)];
+			boxselect = numbers[Random.Range(0,numbers.Length - 1)];
 			mcount = 0;
 		}else if((lasttry == 3 || lasttry == 6) && rcount == 2){
 			numbers = new int[]{1,2,4,5};
-			boxselect = numbers[Random.Range(0,numbers.Length)];
+			boxselect = numbers[Random.Range(0,numbers.Length - 1)];
 			rcount = 0;
 		}
 
@@ -239,6 +239,7 @@ public class mathGame : MonoBehaviour {
 		GenerateOptions ();
 		RandomAssigning ();
 
+		//Debug.Log (randNumber1 +" + "+ randNumber2 +" = "+ generateanswer);
 		questionbox.text = "" + randNumber1 + " + __ = " + generateanswer + "";
 
 	}
@@ -276,9 +277,6 @@ public class mathGame : MonoBehaviour {
 
 		GenerateOptions ();
 		RandomAssigning ();
-
-		Destroy (activeTiles2[0]);
-		activeTiles2.RemoveAt (0);
 
 		//Debug.Log (randNumber1 +" + "+ randNumber2 +" = "+ generateanswer);
 		questionbox.text = "" + randNumber1 + " X __ = " + generateanswer + "";
