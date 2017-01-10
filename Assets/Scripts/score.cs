@@ -74,7 +74,7 @@ public class score : MonoBehaviour {
 			playerExp += PlayerPrefs.GetFloat (currentplayer + "_Addexp");
 			PlayerPrefs.SetFloat (currentplayer + "_Addexp", playerExp);
 
-			DM.ToggleFailMenu (PlayerPrefs.GetFloat (currentplayer+"_Addexp"));
+			DM.ToggleFailMenu (PlayerPrefs.GetFloat (currentplayer+"_Addscore"));
 
 			break;
 
@@ -86,7 +86,7 @@ public class score : MonoBehaviour {
 			playerExp += PlayerPrefs.GetFloat (currentplayer + "_Subtractexp");
 			PlayerPrefs.SetFloat (currentplayer + "_Subtractexp", playerExp);
 
-			DM.ToggleFailMenu (PlayerPrefs.GetFloat (currentplayer+"_Subtractexp"));
+			DM.ToggleFailMenu (PlayerPrefs.GetFloat (currentplayer+"_Subtractscore"));
 
 			break;
 
