@@ -12,9 +12,10 @@ public class playerMotor : MonoBehaviour {
 	private float startTime;
 	private float experience = 5;
 	private bool checkTip = true;
-	private int exp, characterinput, gametype = 0, canProduceSound;
-	private bool canMove = false, isPaused = false;
+	private int exp = 0, characterinput, gametype = 0, canProduceSound;
+	private bool isPaused = false;
 	private float minimumSwipeDistanceX = 200;
+	private string currentplayer;
 	private Touch t = default(Touch);
 	private Vector3 startPosition = Vector3.zero;
 	private AudioSource audioSource;
@@ -23,12 +24,14 @@ public class playerMotor : MonoBehaviour {
 	public float speed = 5.0f;
 	public GameObject GS,MG,PS,controllers;
 	public AudioClip correctSound, incorrectSound;
+	//public Text errorFinder;
 
 
 
 
 	void Start () {
 		gametype = GS.GetComponent<gameSelected> ().getGameState();
+		currentplayer = GS.GetComponent<gameSelected> ().getCurrentPlayer();
 		characterinput = GS.GetComponent<gameSelected> ().getCharacterInput();
 		canProduceSound = GS.GetComponent<gameSelected> ().getSound ();
 		controllers.SetActive (false);
@@ -69,7 +72,7 @@ public class playerMotor : MonoBehaviour {
 		controller.Move ((Vector3.forward * speed) * Time.deltaTime);
 
 
-		if (Time.time - startTime < animationDuration && canMove == false) {
+		if (Time.time - startTime < animationDuration) {
 			return;
 		}
 
@@ -157,8 +160,8 @@ public class playerMotor : MonoBehaviour {
 		
 	void RemoveTip(){
 		if (checkTip == true) {
-			canMove = true;
-			Destroy (imageTip.gameObject);
+			
+			imageTip.gameObject.SetActive(false);
 			checkTip = false;
 		}
 
@@ -195,7 +198,7 @@ public class playerMotor : MonoBehaviour {
 					audioSource.clip = incorrectSound;
 					audioSource.Play ();
 				}
-
+				//errorFinder.text = ("Reached");
 				GetComponent<score> ().OnWrongAnswer (gametype);
 
 			} else if (other.tag == "Right") {
@@ -207,36 +210,59 @@ public class playerMotor : MonoBehaviour {
 				switch (gametype) {
 				case 1:
 					MG.GetComponent<mathGame> ().AdditionTiles ();
-					exp = ((int)PlayerPrefs.GetFloat ("Addexp") + (int)experience);
-					PlayerPrefs.SetFloat ("Addexp", exp);
-					//Destroy (other.gameObject);
+
+					if(PlayerPrefs.GetFloat (currentplayer+"_Addexp") == 0){
+						exp = (int)experience;
+					}else{
+						exp = ((int)PlayerPrefs.GetFloat (currentplayer+"_Addexp") + (int)experience);
+					}
+
+					PlayerPrefs.SetFloat (currentplayer+"_Addexp", exp);
 					break;
 
 					case 2:
 					MG.GetComponent<mathGame> ().SubtractionTiles ();
-					exp = ((int)PlayerPrefs.GetFloat ("Subtractexp") + (int)experience);
-					PlayerPrefs.SetFloat ("Subtractexp", exp);
-					//Destroy (other.gameObject);
+
+					if(PlayerPrefs.GetFloat (currentplayer+"_Addexp") == 0){
+						exp = (int)experience;
+					}else{
+						exp = ((int)PlayerPrefs.GetFloat (currentplayer+"_Subtractexp") + (int)experience);
+					}
+						
+					PlayerPrefs.SetFloat (currentplayer+"_Subtractexp", exp);
 					break;
 
 					case 3:
 					MG.GetComponent<mathGame> ().MultiplicationTiles ();
-					exp = ((int)PlayerPrefs.GetFloat ("Multiplyexp") + (int)experience);
-					PlayerPrefs.SetFloat ("Multiplyexp", exp);
-					//Destroy (other.gameObject);
+
+					if(PlayerPrefs.GetFloat (currentplayer+"_Addexp") == 0){
+						exp = (int)experience;
+					}else{
+						exp = ((int)PlayerPrefs.GetFloat (currentplayer+"_Multiplyexp") + (int)experience);
+					}
+
+
+					PlayerPrefs.SetFloat (currentplayer+"_Multiplyexp", exp);
 					break;
 
 					case 4:
 					MG.GetComponent<mathGame> ().DivisionTiles ();
-					exp = ((int)PlayerPrefs.GetFloat ("Divideexp") + (int)experience);
-					PlayerPrefs.SetFloat ("Divideexp", exp);
-					//Destroy (other.gameObject);
+
+					if(PlayerPrefs.GetFloat (currentplayer+"_Addexp") == 0){
+						exp = (int)experience;
+					}else{
+						exp = ((int)PlayerPrefs.GetFloat (currentplayer+"_Divideexp") + (int)experience);
+					}
+
+
+					PlayerPrefs.SetFloat (currentplayer+"_Divideexp", exp);
 					break;
 
 					default:
 						Debug.Log ("No game type selected");
 					break;
 				}
+
 			}
 		}
 	}

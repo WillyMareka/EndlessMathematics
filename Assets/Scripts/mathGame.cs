@@ -135,7 +135,7 @@ public class mathGame : MonoBehaviour {
 		}
 
 		lasttry = boxselect;
-
+		//Debug.Log(lasttry);
 		switch (boxselect) {
 		case 1:
 			leftText.text = randNumber2.ToString ();
